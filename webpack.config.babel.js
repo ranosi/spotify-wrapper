@@ -1,20 +1,25 @@
+/* import {join} from 'path'
 
+const include = join(__dirname, 'src')
+ */
 const path = require('path');
 
-export default {
-  entry: {
-    app: './src/index',
-  },
+module.exports = {
+  entry: './src/index',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    filename: 'spotify-wrapper.umd.js',
     libraryTarget: 'umd',
-    library: 'spotifyWrapper',
+    library: 'SpotifyWrapper',
   },
   devtool: 'source-map',
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
+      include: [
+        path.resolve(__dirname, 'src'),
+      ],
     }],
   },
 };
